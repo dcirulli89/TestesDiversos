@@ -1,4 +1,3 @@
-#INCOMPLETO
 def tipo_de_pelo (tipo):
     if tipo in "Cc":
         v_base = 20
@@ -9,12 +8,6 @@ def tipo_de_pelo (tipo):
     else: v_base = 0 
     return v_base
     
-def avancar(opcao):
-    if opcao in "Ss": opcao = 1
-    elif opcao in "Qq": opcao = 2
-    else: opcao = 0
-    return opcao
-        
 def peso_do_bicho(peso):
     if peso <=0:
         multiplicador = 0
@@ -29,24 +22,45 @@ def peso_do_bicho(peso):
     else: multiplicador = 4.2
     return multiplicador
     
-tipo = input("Qual o tipo de pelo do cachorro?\nPelo curto - Digite 'C'\nPelo curto - Digite 'M'\nPelo curto - Digite 'L'\n")
-v_base = tipo_de_pelo(tipo)
-if v_base == 0:
-    while v_base == 0:
-    print("Opção inválida! Digite uma opção válida!")
-    tipo = input("Qual o tipo de pelo do cachorro?\nPelo curto - Digite 'C'\nPelo curto - Digite 'M'\nPelo curto - Digite 'L'\n")
-    v_base = tipo_de_pelo(tipo)
-else:
-    op = input("Quer avançar?\nDigite:\n 'Y' se Sim\n'Q' se quiser cancelar a compra\n'V' para voltar")
-opcao = avancar(op)
-while opcao == 2:
-    break
-if opcao == 1:
-    peso = float(input("Qual o peso (massa) do animal, em kg? (Use ponto ao invés de vírgula)\n"))
-    multiplicador = peso_do_bicho(peso)
-    valor_final = multiplicador*v_base
+def menu01(dado):
+    if dado == 0: ind = 0
+    else: ind = 1
+    return ind
+    
+def menu03(dado):
+    if dado in "Zz": ind = 1
+    elif dado in "Qq": ind = 2
+    elif dado in "Aa": ind = 3
+    else: ind = 0
+    return ind
 
 
-print(f"Preço final: R$ {valor_final:.02f}")
+menu1 = 0
+while menu1 == 0:
+    tipo = input("Digite o tipo de pelo:\nQual o tipo de pelo do cachorro?\nPelo curto - Digite 'C'\nPelo curto - Digite 'M'\nPelo curto - Digite 'L'\n")
+    v_base = tipo_de_pelo (tipo)
+    menu1 = menu01(v_base)
 
-
+    if menu1 == 1:
+        menu2 = 0
+        while menu2 == 0: 
+            peso = float(input("\nQual o peso (massa) do animal, em kg? (Use ponto ao invés de vírgula)\n"))
+            multiplicador = peso_do_bicho(peso)
+            menu2 = menu01(multiplicador)
+            
+            if menu2 == 1:
+                menu3 = 0
+                while menu3 == 0:
+                    op = ("Deseja finalizar a compra?\nSim - Digite 'Z'\nVoltar ao início - Digite 'A'\nSair sem comprar - Digite 'Q'")
+                    menu3 = menu03(op)
+                    if menu3 == 1:
+                        valor_final = multiplicador*v_base
+                        print(f"Preço final: R$ {valor_final:.02f}")
+                        print("Obrigado e volte sempre!")
+                    elif menu3 == 2:
+                        print("Obrigado e volte sempre!")
+                    elif menu3 == 3:
+                        menu2=0
+                    
+                
+            else: print("Digite uma opção válida!")    
