@@ -1,0 +1,52 @@
+#INCOMPLETO
+def tipo_de_pelo (tipo):
+    if tipo in "Cc":
+        v_base = 20
+    elif tipo in "Mm":
+        v_base = 27.5
+    elif tipo in "Ll":
+        v_base = 35
+    else: v_base = 0 
+    return v_base
+    
+def avancar(opcao):
+    if opcao in "Ss": opcao = 1
+    elif opcao in "Qq": opcao = 2
+    else: opcao = 0
+    return opcao
+        
+def peso_do_bicho(peso):
+    if peso <=0:
+        multiplicador = 0
+    elif peso>=5 and peso<12:
+        multiplicador = 2
+    elif peso>=12 and peso<22:
+        multiplicador = 2.4
+    elif peso>=22 and peso<35:
+        multiplicador=2.9
+    elif peso>=35 and peso<50:
+        multiplicador=3.5
+    else: multiplicador = 4.2
+    return multiplicador
+    
+tipo = input("Qual o tipo de pelo do cachorro?\nPelo curto - Digite 'C'\nPelo curto - Digite 'M'\nPelo curto - Digite 'L'\n")
+v_base = tipo_de_pelo(tipo)
+if v_base == 0:
+    while v_base == 0:
+    print("Opção inválida! Digite uma opção válida!")
+    tipo = input("Qual o tipo de pelo do cachorro?\nPelo curto - Digite 'C'\nPelo curto - Digite 'M'\nPelo curto - Digite 'L'\n")
+    v_base = tipo_de_pelo(tipo)
+else:
+    op = input("Quer avançar?\nDigite:\n 'Y' se Sim\n'Q' se quiser cancelar a compra\n'V' para voltar")
+opcao = avancar(op)
+while opcao == 2:
+    break
+if opcao == 1:
+    peso = float(input("Qual o peso (massa) do animal, em kg? (Use ponto ao invés de vírgula)\n"))
+    multiplicador = peso_do_bicho(peso)
+    valor_final = multiplicador*v_base
+
+
+print(f"Preço final: R$ {valor_final:.02f}")
+
+
