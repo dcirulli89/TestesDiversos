@@ -11,6 +11,8 @@ def tipo_de_pelo (tipo):
 def peso_do_bicho(peso):
     if peso <=0:
         multiplicador = 0
+    elif peso>0 and peso<5:
+        multiplicador = 1.7
     elif peso>=5 and peso<12:
         multiplicador = 2
     elif peso>=12 and peso<22:
@@ -47,20 +49,21 @@ while menu1 == 0:
             peso = float(input("\nQual o peso (massa) do animal, em kg? (Use ponto ao invés de vírgula)\n"))
             multiplicador = peso_do_bicho(peso)
             menu2 = menu01(multiplicador)
-            
-            if menu2 == 1:
+            #print(menu2)
+            if menu2 == 1: 
                 menu3 = 0
                 while menu3 == 0:
-                    op = ("Deseja finalizar a compra?\nSim - Digite 'Z'\nVoltar ao início - Digite 'A'\nSair sem comprar - Digite 'Q'")
+                    op = input("Deseja finalizar a compra?\nSim - Digite 'Z'\nVoltar ao início - Digite 'A'\nSair sem comprar - Digite 'Q'\n")
                     menu3 = menu03(op)
+                    #print(menu3)
                     if menu3 == 1:
                         valor_final = multiplicador*v_base
                         print(f"Preço final: R$ {valor_final:.02f}")
-                        print("Obrigado e volte sempre!")
+                        print("\nObrigado e volte sempre!\n")
                     elif menu3 == 2:
-                        print("Obrigado e volte sempre!")
+                        print("\nCompra cancelada! Obrigado e volte sempre!")
                     elif menu3 == 3:
-                        menu2=0
+                        menu1=0
                     
                 
             else: print("Digite uma opção válida!")    
